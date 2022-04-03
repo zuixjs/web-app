@@ -1,14 +1,18 @@
-# zuix.js web starter
+# Web App template
 
-Starter project for component based web development with [zuix.js](https://zuixjs.github.io/zuixjs.org) and [Eleventy](https://www.11ty.dev).
+A typical mobile app layout, with side drawer, collapsible header, Material Design UI, internal search engine
+and adaptive design that works very well on desktop screens too.
+
+Starter project based on [zuix-web-starter](https://zuixjs.github.io/zuix-web-starter).
 
 ### [Demo and Docs](https://zuixjs.github.io/zuix-web-starter)
 
-![Lighthouse performance test](https://zuixjs.github.io/zuix-web-starter/images/lighthouse.png)
+![Lighthouse performance test](https://zuixjs.github.io/web-app/images/lighthouse.png)
 
 ## Resources and Docs
 
+- **zuix-web-starter** https://zuixjs.github.io/zuix-web-starter
+- **News Blog template** https://github.com/zuixjs/news-blog
 - **zuix.js** https://zuixjs.org
-- **11ty** https://11ty.dev
 - **zKit** https://zuixjs.github.io/zkit/
-- **News Blog Starter** https://github.com/zuixjs/news-blog
+- **11ty** https://11ty.dev
