@@ -1,0 +1,17 @@
+ __        __   _       ____  _             _
+ \ \      / /__| |__   / ___|| |_ __ _ _ __| |_ ___ _ __
+  \ \ /\ / / _ \ '_ \  \___ \| __/ _` | '__| __/ _ \ '__|
+   \ V  V /  __/ |_) |  ___) | || (_| | |  | ||  __/ |
+    \_/\_/ \___|_.__/  |____/ \__\__,_|_|   \__\___|_|
+
+# TEAM
+
+  zuix.js - https://github.com/zuixjs
+  g-labs  - https://github.com/genielabs
+
+# TECHNOLOGY COLOPHON
+
+  HTML5, CSS3, JavaScript
+  zuix.js  - https://zuixjs.org
+  Eleventy - https://11ty.dev
+  Node.js  - https://nodejs.org

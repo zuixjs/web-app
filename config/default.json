@@ -1,0 +1,64 @@
+{
+  "zuix": {
+    "build": {
+      "input": "source",
+      "output": "docs",
+      "copy": [
+        "css",
+        "images",
+        ".nojekyll",
+        "browserconfig.xml",
+        "manifest.json",
+        "humans.txt",
+        "favicon.ico",
+        "robots.txt",
+        "pages/**/*.jpg",
+        "pages/**/*.png",
+        "pages/**/*.webp",
+        "pages/**/*.gif",
+        "pages/**/*.svg",
+        "pages/**/*.json"
+      ],
+      "ignore": [
+        "_filters",
+        "pages/**/_inc/*"
+      ],
+      "dataFolder": "_data",
+      "includesFolder": "_inc",
+      "componentsFolders": [ "app", "lib" ],
+      "bundle": {
+        "js": false,
+        "css": false,
+        "zuix": false
+      },
+      "mirror": "",
+      "serviceWorker": false,
+      "minify": {
+        "disable": true,
+        "collapseWhitespace": true,
+        "removeOptionalTags": true,
+        "removeRedundantAttributes": true,
+        "removeScriptTypeAttributes": true,
+        "removeTagWhitespace": false,
+        "useShortDoctype": false,
+        "collapseBooleanAttributes": true,
+        "removeAttributeQuotes": false,
+        "removeEmptyAttributes": true,
+        "minifyCSS": false,
+        "minifyJS": true
+      }
+    },
+    "app": {
+      "title": "Web App Template",
+      "subtitle": "Simple, yet powerful!",
+      "baseUrl": "/",
+      "resourcePath": "{{ app.baseUrl }}app/",
+      "libraryPath": {
+        "@lib": "{{ app.baseUrl }}lib/1.1/",
+        "@hgui": "https://genielabs.github.io/homegenie-web-ui/app/",
+        "@cdnjs": "https://cdnjs.cloudflare.com/ajax/libs/"
+      },
+      "googleSiteId": "UA-123-456"
+    }
+  }
+}
