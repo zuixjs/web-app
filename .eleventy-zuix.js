@@ -45,6 +45,7 @@ const buildFolder = zuixConfig.get('build.output');
 const copyFiles = zuixConfig.get('build.copy');
 const ignoreFiles = zuixConfig.get('build.ignore');
 const componentsFolders = zuixConfig.get('build.componentsFolders');
+const contentFolder = zuixConfig.get('build.contentFolder');
 const dataFolder = zuixConfig.get('build.dataFolder');
 const includesFolder = zuixConfig.get('build.includesFolder');
 // this file is a temporary file create to trigger 11ty build
@@ -255,7 +256,7 @@ function configure(eleventyConfig) {
 
   // this is used by the searchFilter
   eleventyConfig.addCollection('posts_searchIndex', (collection) => {
-    return [...collection.getFilteredByGlob(path.join(zuixConfig.build.input, 'pages/**/*.md'))];
+    return [...collection.getFilteredByGlob(path.join(zuixConfig.build.input, contentFolder, '**/*.md'))];
   });
 
   /*

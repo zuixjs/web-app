@@ -96,6 +96,7 @@ Template engine folders:
 
 Global asset files and folders:
 ```
+./source/css
 ./source/images
 ./source/js
 ./browserconfig.xml
@@ -119,5 +120,5 @@ Main pages:
 
 Content pages:
 ```
-./source/pages
+./source/content
 ```
