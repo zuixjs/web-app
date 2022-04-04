@@ -45,7 +45,7 @@ const buildFolder = zuixConfig.get('build.output');
 const copyFiles = zuixConfig.get('build.copy');
 const ignoreFiles = zuixConfig.get('build.ignore');
 const componentsFolders = zuixConfig.get('build.componentsFolders');
-const contentFolder = zuixConfig.get('build.contentFolder');
+const contentFolder = zuixConfig.get('build.contentFolder', 'content');
 const dataFolder = zuixConfig.get('build.dataFolder');
 const includesFolder = zuixConfig.get('build.includesFolder');
 // this file is a temporary file create to trigger 11ty build
