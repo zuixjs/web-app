@@ -14,12 +14,17 @@
     height: 52px;
     padding: 16px;
     border-top: solid 1px rgba(255,255,255, 0.4);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
 }
 .title {
     color: #fff;
-    font-size: 110%;
+    font-size: 120%;
     font-weight: 500;
+    width: 220px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .mdl-ripple {
     background: #fff;
@@ -30,8 +35,11 @@
 .mdl-card__title span {
     width: 100%;
     font-size: 95%;
-    padding-left: 3px;
-    padding-right: 3px;
-    background: rgba(255,255,255,0.65);
+    padding: 6px;
+    background: rgba(255,255,255,0.85);
     border-radius: 3px;
+}
+
+[z-field="text"]:empty {
+    display: none;
 }

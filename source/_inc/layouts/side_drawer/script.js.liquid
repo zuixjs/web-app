@@ -21,29 +21,6 @@ function scrollbarVisible(element) {
   return r.bottom !== r.height;
 }
 
-const header = zuix.field('header');
-let headerVisible = true;
-function showHeader() {
-  if (!headerVisible) {
-    headerVisible = true;
-    header
-        .playAnimation(['animate__fadeOutUp', 'animate__fadeInDown'])
-        .show();
-  }
-}
-function hideHeader() {
-  if (headerVisible && !header.isPlaying()) {
-    headerVisible = false;
-    header
-        .playAnimation({
-          classes: ['animate__fadeInDown', 'animate__fadeOutUp'],
-          onEnd: function() {
-            this.hide();
-          }
-        });
-  }
-}
-
 {% if options contains 'ext-links' -%}
 function processExternalLinks(view) {
   // Force opening of all non-local links in a new window
@@ -63,3 +40,10 @@ referrerLink.href = document.referrer;
 const enterAnimation =
   (referrerLink.pathname === '{{ app.baseUrl }}') ?
     'animate__fadeInLeft' : 'animate__fadeIn';
+
+// smooth scroll for local anchors
+function navigateTo(anchor) {
+  const target = zuix.$.find('a[name="' + anchor + '"]');
+  zuix.context(document.body).scroll
+          .scrollTo(target, 500);
+}

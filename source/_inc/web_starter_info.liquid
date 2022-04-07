@@ -1,0 +1,24 @@
+{% if collections['docs'] %}
+<!-- this will not be shown if the "docs" group has been deleted -->
+
+{% renderTemplate "md" -%}
+Welcome to **Web App** starter template. This is part of a series of templates based on **`zuix-web-starter`**.
+It is recommended to read its documentation before using this template.
+{%- endrenderTemplate %}
+
+{% layout 'row center-center' 'style="gap: 12px; margin-bottom: 12px; font-size: 190%;"' %}
+    <img src="{{ '/images/zuix-logo.svg' | url }}" width="28" height="28" alt="zuix.js logo">
+    <div>web starter</div>
+{% endlayout %}
+
+{% layout 'column center-center' 'style="gap: 6px; margin-bottom: 32px"' %}
+    {% zx 'button' 'https://zuixjs.github.io/zuix-web-starter/' 'raised' 'colored' %}
+        Base documentation
+    {% endzx %}
+{% endlayout %}
+
+<p>
+    Below you will find documented all extra features and specific configuration for this web app template.
+</p>
+
+{% endif %}

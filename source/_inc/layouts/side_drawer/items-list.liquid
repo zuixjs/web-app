@@ -8,7 +8,7 @@
         {% endif %}
         {% assign imageUrl = post.data.imagePreviewMini | url %}
 
-        {% zx 'card' post.data.title imageUrl 'Open' postUrl 'image' %}
+        {% zx 'card' 'image' post.data.title imageUrl postUrl %}
         {{ post.data.description }}
         {% endzx %}
 

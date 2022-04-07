@@ -2,8 +2,8 @@
 layout: side_drawer.liquid
 options: mdl highlight ext-links
 theme: indigo-deep_purple
-tags: documentation
-group: documentation
+tags: docs
+group: docs
 order: 1
 title: Page options
 description: Front matter data, layout and other page options.
@@ -24,7 +24,7 @@ keywords:
 - Default
 ---
 
-In addition to the `zuix-web-starer` base [options](https://zuixjs.github.io/zuix-web-starter/page-editing-and-options/), the following options are available. 
+In addition to the `zuix-web-starer` base [options](https://zuixjs.github.io/zuix-web-starter/content/page-editing-and-options/), the following options are available. 
 
 ## Front matter data
 

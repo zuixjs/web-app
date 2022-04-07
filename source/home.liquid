@@ -4,7 +4,7 @@ options: mdl highlight ext-links
 theme: indigo-deep_purple
 order: 0
 icon: home
-title: Home
+title: Welcome!
 description: zuix.js web app home page
 keywords:
 - zuix
@@ -13,20 +13,7 @@ keywords:
 - home
 ---
 
-
-{% renderTemplate "md" %}
-
-This template is based on `zuix-web-starer`. It is recommended to read its [documentation](https://zuixjs.github.io/zuix-web-starter)
-to get started using this template.
-
-{% endrenderTemplate %}
-
-
-<a href="https://github.com/zuixjs/zuix-web-starter" style="gap: 12px; font-size: 140%; padding: 12px;display: inline-block">
-    <img src="{{ '/images/github-mark.png' | url }}" width="32" height="32" alt="GitHub logo">
-    <span>source code</span>
-</a>
-
+{% include 'web_starter_info.liquid' %}
 
 <!-- sections and articles list -->
 

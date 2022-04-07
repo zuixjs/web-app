@@ -16,6 +16,20 @@
     a {
         text-decoration: none;
     }
+    a[name] {
+        position: relative;
+        top: -48px;
+    }
+    /* prevents links dragging */
+    a, a::after, a::before {
+        -webkit-user-drag: none;
+        -webkit-app-region: no-drag;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
     h1 {
         font-size: 230% !important;
         font-weight: 500;
@@ -30,7 +44,6 @@
     }
     h2 {
         font-size: 220% !important;
-        font-weight: 550;
         color: var(--primary-color);
     }
     h3 {
@@ -96,12 +109,6 @@
         color: #0b4d2c;
         overflow-wrap: break-word; /* for old browsers */
         overflow-wrap: anywhere;
-    }
-
-    /* prevents links dragging */
-    a, a::after, a::before {
-        -webkit-user-drag: none;
-        -webkit-app-region: no-drag;
     }
 
     main {
