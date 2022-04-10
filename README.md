@@ -5,7 +5,7 @@ and adaptive design that works very well on desktop screens too.
 
 Starter project based on [zuix-web-starter](https://zuixjs.github.io/zuix-web-starter).
 
-### [Demo and Docs](https://zuixjs.github.io/web-app)
+### --&gt;&gt;[ [Demo and Docs](https://zuixjs.github.io/web-app) ]&lt;&lt;--
 
 ![Lighthouse performance test](https://zuixjs.github.io/web-app/images/lighthouse.png)
 
