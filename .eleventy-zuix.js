@@ -324,7 +324,7 @@ function configure(eleventyConfig) {
       return styleTag ? `${styleTag}${content}</style>` : content;
     }
     // cssId already outputted for this page
- //   return '';
+    return '';
   });
 }
 
