@@ -5,10 +5,10 @@ theme: indigo-deep_purple
 tags: docs
 group: docs
 order: 50
+coverPreview: https://picsum.photos/seed/docs=74/256/256
 title: Material Design components
 description: Rendering Material Design components using <code>zx</code> short code
 icon: smart_button
-imagePreviewMini: https://picsum.photos/seed/docs=74/256/256
 keywords:
 - Material
 - Design

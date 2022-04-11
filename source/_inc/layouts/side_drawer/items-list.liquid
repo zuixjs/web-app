@@ -6,7 +6,7 @@
         {% else %}
             {% assign postUrl = post.url | url %}
         {% endif %}
-        {% assign imageUrl = post.data.imagePreviewMini | url %}
+        {% assign imageUrl = post.data.coverPreview | url %}
 
         {% zx 'card' 'image' post.data.title imageUrl postUrl %}
         {{ post.data.description }}

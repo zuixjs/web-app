@@ -5,10 +5,10 @@ theme: indigo-deep_purple
 tags: docs
 group: docs
 order: 1
+coverPreview: https://picsum.photos/seed/docs=03/256/256
 title: Page options
 description: Front matter data, layout and other page options.
 icon: tune
-imagePreviewMini: https://picsum.photos/seed/docs=03/256/256
 pubDate: 2022-03-07 09:34:14
 keywords:
 - Quick
@@ -56,7 +56,7 @@ When using `mdl` style, also the **`theme`** variable can be added to the front 
 
 Icon associated to the page. This icon is currently shown next to the page name in the side drawer's menu of the `side_drawer` layout.
 
-### `imagePreviewMini`
+### `coverPreview`
 
 A 256x256 preview image to be used in cards list, like the ones used in the [home page](../../../home).
 

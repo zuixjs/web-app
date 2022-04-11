@@ -5,10 +5,10 @@ options: mdl highlight ext-links
 tags: docs
 group: docs
 order: 40
+coverPreview: https://picsum.photos/seed/docs!zx-tags/256/256
 title: Components short codes
 description: Rendering zKit and custom components using <code>zx</code> short code 
 icon: read_more
-imagePreviewMini: https://picsum.photos/seed/docs!zx-tags/256/256
 pubDate: 2022-04-05 04:01:41
 keywords:
 - Zx
