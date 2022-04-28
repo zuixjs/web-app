@@ -22,16 +22,7 @@ function scrollbarVisible(element) {
 }
 
 {% if options contains 'ext-links' -%}
-function processExternalLinks(view) {
-  // Force opening of all non-local links in a new window
-  zuix.$(view).find('a[href*="://"]')
-          .attr('target', '_blank')
-          .attr('rel', 'noreferrer');
-}
-zuix.hook('view:process', function(view) {
-  processExternalLinks(view);
-});
-processExternalLinks(document);
+{% include '../common/external-links.js' %}
 {% endif %}
 
 // add presentation anim to the drawer
@@ -47,3 +38,43 @@ function navigateTo(anchor) {
   zuix.context(document.body).scroll
           .scrollTo(target, 500);
 }
+
+
+{% if zuixEditor -%}
+// zuix-editor events handling
+zuix.context('zuix-editor', function(ed) {
+  const data = ed.data;
+  if (data.tags && data.tags.indexOf('sections') !== -1) {
+    data.section = data.group;
+  }
+  setEditorData(ed.data);
+  ed.on({
+    'zuix:action:progress': function(e, ar) {
+      if (ar.action === 'delete-page' && !ar.data.section) {
+        document.location.href = ar.redirect + '#waitReload';
+      }
+    },
+    'zuix:action:result': function(e, ar) {
+      if (ar) {
+        switch(ar.action) {
+          case 'add-page':
+            document.location.href = ar.url;
+            break;
+          case 'delete-page':
+            if (ar.data.section) { // whole section
+              document.location.href = data.app.baseUrl;
+            } else { // single page
+              refresh();
+            }
+            break;
+        }
+      } else {
+        refresh();
+      }
+    }
+  });
+});
+function refresh(scrollTop) {
+  document.location.reload();
+}
+{% endif -%}

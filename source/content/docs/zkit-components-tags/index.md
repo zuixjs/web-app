@@ -107,7 +107,7 @@ items:
 
 options:
 - name: position
-  value: right
+  value: center
 - name: button-color
   value: seagreen
 - name: icon-color

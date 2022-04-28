@@ -280,5 +280,8 @@ items:
 settings:
 - name: lazy
   value: false
+options:
+- name: position
+  value: center
 
 {% endzx %}

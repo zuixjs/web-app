@@ -159,6 +159,7 @@ html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}[layout]{display:
     }
 
     main {
+        min-height: 100vh;
         width: 100% !important;
         padding: 0 !important;
         transition: padding-left 150ms ease-in-out;
@@ -202,6 +203,17 @@ html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}[layout]{display:
         text-overflow: ellipsis;
     }
 
+    nav, nav a {
+        color: black!important;
+    }
+    footer {
+        background: transparent!important;
+        box-shadow: none!important;
+    }
+    footer, footer a {
+        color: black!important;
+    }
+
     .header-menu-button {
         cursor: pointer;
         height: 48px!important;
@@ -241,6 +253,14 @@ html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}[layout]{display:
         .header-menu-button {
             display: none;
         }
+
+        [z-load*="/components/menu-overlay"] .menu-button.center {
+            right: calc(50% - 28px - 140px)!important;
+            left: calc(50% - 28px + 140px)!important;
+        }
+        [z-load*="/components/menu-overlay"] [z-field="menu_overlay"].center {
+            left: 280px!important;
+        }
     }
 
     /* UI state classes */
@@ -269,7 +289,7 @@ html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}[layout]{display:
         height: 256px;
     }
     [z-include][z-ready=true].visible-on-ready, [z-load][z-ready=true].visible-on-ready {
-        transition: opacity 500ms ease-in-out;
+        transition: opacity 300ms ease-in-out;
     }
     .drawer-header {
     color:white;
@@ -396,7 +416,320 @@ html{box-sizing:border-box}*,:after,:before{box-sizing:inherit}[layout]{display:
 }
 [z-context="menu-drawer"]:focus {
     outline: none;
-}</style></head><!-- scroll helper is used to show/hide the header when scrolling --><body ctrl="" z-load="@lib/controllers/header-auto-hide" z-lazy="scroll" data-o-header="header" data-o-show-end="false" data-theme="indigo-pink" layout="column stretch-stretch"><nav #header="" layout="row center-start"><div self="stretch" layout="row center-start"><button onclick="menuDrawer.open()" class="header-menu-button mdl-button mdl-button--icon"><i class="material-icons">menu_open</i></button><h1 self="size-x1" class="title">Documentation</h1></div></nav><main class="animate__animated animate__fadeIn animate__faster" layout="column top-center"><h1 #alt_header="" class="title">Documentation</h1><div self="size-x1" class="content"><div layout="rows top-spread"><div view="" z-load="@lib/templates/mdl-card-image" class="visible-on-ready" style="margin: 12px;min-width: 256px; min-height: 256px"><h1 #title="" style="font-size: 150%!important; position: absolute; padding: 12px" class="mdl-color-text--primary-contrast">Page options</h1><img #image="" src="/web-app/assets/mirror/picsum.photos/seed/docs=03/256/256" alt="Cover image" role="presentation" width="100%"><div style="position: absolute; bottom: 0; background: #ffffffAA"><p #text="">Front matter data, layout and other page options.</p><a #link.url="" href="/web-app/content/docs/page-options/"><span #link.title=""></span></a></div></div><div view="" z-load="@lib/templates/mdl-card-image" class="visible-on-ready" style="margin: 12px;min-width: 256px; min-height: 256px"><h1 #title="" style="font-size: 150%!important; position: absolute; padding: 12px" class="mdl-color-text--primary-contrast">Components short codes</h1><img #image="" src="/web-app/assets/mirror/picsum.photos/seed/docs!zx-tags/256/256" alt="Cover image" role="presentation" width="100%"><div style="position: absolute; bottom: 0; background: #ffffffAA"><p #text="">Rendering zKit and custom components using zx short code</p><a #link.url="" href="/web-app/content/docs/zkit-components-tags/"><span #link.title=""></span></a></div></div><div view="" z-load="@lib/templates/mdl-card-image" class="visible-on-ready" style="margin: 12px;min-width: 256px; min-height: 256px"><h1 #title="" style="font-size: 150%!important; position: absolute; padding: 12px" class="mdl-color-text--primary-contrast">Material Design components</h1><img #image="" src="/web-app/assets/mirror/picsum.photos/seed/docs=74/256/256" alt="Cover image" role="presentation" width="100%"><div style="position: absolute; bottom: 0; background: #ffffffAA"><p #text="">Rendering Material Design components using zx short code</p><a #link.url="" href="/web-app/content/docs/material-design-tags/"><span #link.title=""></span></a></div></div></div><div layout="rows center-spread" style="margin-top: 112px; gap:12px; margin-bottom: 32px; padding-left: 8px; padding-right: 8px; font-size: 140%"><div>&nbsp;</div><div>&nbsp;</div></div><style>.navigation-image {
+}
+
+
+/* forms */
+/* forms */
+
+.button {
+    cursor: pointer;
+    display: flex;
+    padding: 6px;
+    height: 48px;
+    margin: 6px;
+    align-items: center;
+    border-radius: 6px;
+    background-color: #bbbbbb15;
+    box-shadow: 0 1px 4px 0 #00000055;
+}
+.button:hover {
+    background-color: #bbbbbb1a;
+    box-shadow: 0 3px 8px 0 #00000055;
+}
+.theme-dark .button:hover {
+    box-shadow: 0 0 6px 2px var(--dark-color-text);
+}
+.button:active {
+    background-color: #bbbbbb26;
+    box-shadow: 0 0 2px 0 #00000055;
+}
+.button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    box-shadow: 0 0 0 0 #00000055;
+}
+
+/* from https://codepen.io/nikstech/pen/xmMxpr */
+
+.input-container {
+    position: relative;
+    margin-bottom: 25px;
+}
+.input-container label {
+    position:absolute;
+    top: 12px;
+    left: 0;
+    pointer-event: none!important;
+    transition: all 0.15s ease-in-out;
+}
+.input-container input, input:not([type="checkbox"]):not([type="radio"]):not(.mdl-textfield__input) {
+    z-index: 1;
+    border:0;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid;
+    padding: 8px 0 5px 0;
+}
+.input-container input:focus, input:focus:not([type="checkbox"]):not([type="radio"]) {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bd0505;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label {
+    top: -14px;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+
+[type=radio],
+[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    border: solid 1px;
+}
+[type=radio],
+[type=checkbox] {
+    width: 22px!important;
+    height: 18px;
+    margin-left: 6px;
+    margin-right: 6px;
+    position: relative;
+    border: solid 1px;
+    border-radius: 2px;
+}
+[type=radio]:checked::before,
+[type=checkbox]:checked::before {
+    content: "";
+    width: 12px;
+    height: 10px;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+}
+[type=radio],
+[type=radio]:checked::before{
+    border-radius: 100%;
+}
+
+:root {
+    --lite-color: #fff;
+    --lite-color-text: #000;
+    --lite-nav-color: #007ca7;
+    --lite-nav-color-text: #fff;
+    --lite-color--accent: #e10c57;
+    --lite-color--primary: #3954be;
+    --lite-color--code: #005000;
+    --lite-font--weigth: 400;
+
+    --dark-color: #141414;
+    --dark-color-text: #d2d2d2;
+    --dark-nav-color: #741f3b; /* #014b76; */ /* #60142d; */
+    --dark-nav-color-text: #ccc;
+    --dark-color--accent: #f1c700;
+    --dark-color--primary: #6ba64d;
+    --dark-color--code: #8fc563;
+    --dark-font--weigth: 400;
+}
+
+/*========================*\
+      Theme 'lite'
+\*========================*/
+
+body{
+    background-color: var(--lite-color);
+    color: var(--lite-color-text);
+    font-weight: var(--lite-font--weigth);
+}
+nav, footer {
+    background-color: var(--lite-nav-color);
+    color: var(--lite-nav-color-text);
+    fill: var(--lite-nav-color-text);
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%), 0 -4px 12px 0 rgb(0 0 0 / 20%);
+}
+nav svg, .menu-button svg {
+    fill:var(--lite-nav-color-text);
+}
+svg {
+    fill:var(--lite-color-text);
+}
+nav a, footer a {
+    color: var(--lite-nav-color-text);
+}
+a {
+    color: var(--lite-color--accent);
+    text-decoration: none;
+}
+main h1, main h2, main h3 {
+    color: var(--lite-color--primary);
+}
+code:not([class*=language-]), pre:not([class*=language-]) {
+    color: var(--lite-color--code);
+}
+.accent {
+    color: var(--lite-color--accent);
+    fill: var(--lite-color--accent);
+}
+.primary {
+    color: var(--lite-color--primary);
+    fill: var(--lite-color--primary);
+}
+.background {
+    background-color: var(--lite-color);
+}
+.input-container input,  input {
+  color: var(--lite-color-text);
+  border-bottom-color: var(--lite-color--primary);
+}
+.input-container input:valid,  input:valid {
+  border-bottom-color: var(--lite-color--primary)!important;
+}
+
+[type=radio]:checked::before,
+
+[type=checkbox]:checked::before {
+    background-color: var(--lite-color--accent);
+}
+
+[type=radio],
+
+[type=checkbox] {
+    border-color: var(--lite-color--primary);
+}
+
+button {
+    color: var(--lite-color-text);
+    fill: var(--lite-color-text);
+}
+
+/*========================*\
+      Theme 'dark'
+\*========================*/
+
+body.theme-dark {
+    background-color: var(--dark-color);
+    color: var(--dark-color-text);
+    font-weight: var(--dark-font--weigth);
+}
+.theme-dark nav, .theme-dark footer {
+    background-color: var(--dark-nav-color);
+    color: var(--dark-nav-color-text);
+    fill: var(--dark-nav-color-text);
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 20%), 0 -4px 12px 0 rgb(0 0 0 / 20%);
+}
+.theme-dark nav svg, .theme-dark .menu-button svg {
+    fill:var(--dark-nav-color-text);
+}
+.theme-dark svg {
+    fill:var(--dark-color-text);
+}
+.theme-dark nav a, .theme-dark footer a {
+    color: var(--dark-nav-color-text);
+}
+.theme-dark a {
+    color: var(--dark-color--accent);
+    text-decoration: none;
+}
+.theme-dark main h1, .theme-dark main h2, .theme-dark main h3 {
+    color: var(--dark-color--primary);
+}
+.theme-dark code:not([class*=language-]), .theme-dark pre:not([class*=language-]) {
+    color: var(--dark-color--code);
+}
+.theme-dark .accent {
+    color: var(--dark-color--accent);
+    fill: var(--dark-color--accent);
+}
+.theme-dark .primary {
+    color: var(--dark-color--primary);
+    fill: var(--dark-color--primary);
+}
+.theme-dark .background {
+    background-color: var(--dark-color);
+}
+.theme-dark .input-container input, .theme-dark  input {
+  color: var(--dark-color-text);
+  border-bottom-color: var(--dark-color--primary);
+}
+.theme-dark .input-container input:valid, .theme-dark  input:valid {
+  border-bottom-color: var(--dark-color--primary)!important;
+}
+.theme-dark 
+[type=radio]:checked::before,
+.theme-dark 
+[type=checkbox]:checked::before {
+    background-color: var(--dark-color--accent);
+}
+.theme-dark 
+[type=radio],
+.theme-dark 
+[type=checkbox] {
+    border-color: var(--dark-color--primary);
+}
+.theme-dark 
+button {
+    color: var(--dark-color-text);
+    fill: var(--dark-color-text);
+}
+
+/*
+---------------------------------
+ */
+
+.theme-toggle[type=checkbox] {
+    margin: 0;
+    --size: 32px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    width: var(--size)!important;
+    height: var(--size)!important;
+    box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
+    border-radius: var(--size);
+    transition: all 500ms;
+    color: var(--lite-nav-color-text);
+}
+.theme-toggle[type=checkbox]:checked {
+    --ray-size: calc(var(--size) * -0.4);
+    --offset-orthogonal: calc(var(--size) * 0.65);
+    --offset-diagonal: calc(var(--size) * 0.45);
+    transform: scale(0.75);
+    box-shadow: inset 0 0 0 var(--size),
+        calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
+        var(--offset-orthogonal) 0 0 var(--ray-size),
+        0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size),
+        0 var(--offset-orthogonal) 0 var(--ray-size),
+        calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0 var(--ray-size),
+        var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size),
+        calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size),
+        var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
+    color: var(--dark-nav-color-text);
+    background-color: transparent!important;
+}
+.theme-toggle[type=checkbox]:checked::before {
+    background-color: transparent!important;
+}
+
+/* ----- MENU OVERLAY COMPONENT ----- */
+[z-load*="/components/menu-overlay"] .circle-button {
+    border: solid 1px var(--lite-color);
+    background-color: var(--lite-nav-color)!important;
+    fill: var(--lite-nav-color-text)!important;
+}
+.theme-dark [z-load*="/components/menu-overlay"] .circle-button {
+    border: solid 1px var(--dark-color);
+    background-color: var(--dark-nav-color)!important;
+    fill: var(--dark-nav-color-text)!important;
+}
+.theme-dark [z-load*="/components/menu-overlay"] div[z-field="menu_overlay"] {
+    background: radial-gradient(circle at bottom, black, #000000dd, #00000077, transparent)!important;
+}</style></head><!-- scroll helper is used to show/hide the header when scrolling --><body ctrl="" z-load="@lib/controllers/header-auto-hide" z-lazy="scroll" data-o-header="header" data-o-show-end="false" data-theme="indigo-pink" layout="column stretch-stretch"><nav #header="" layout="row center-start"><div self="stretch" layout="row center-start"><button onclick="menuDrawer.open()" class="header-menu-button mdl-button mdl-button--icon"><i class="material-icons">menu_open</i></button><h1 self="size-x1" class="title">Documentation</h1></div></nav><main class="animate__animated animate__fadeIn animate__faster" layout="column top-center"><h1 #alt_header="" class="title">Documentation</h1><div self="size-x1" class="content"><div layout="rows top-spread"><div view="" z-load="@lib/templates/mdl-card-image" class="visible-on-ready" style="margin: 12px;min-width: 256px; min-height: 256px"><h1 #title="" style="font-size: 150%!important; position: absolute; padding: 12px" class="mdl-color-text--primary-contrast">Page options</h1><img #image="" src="https://picsum.photos/seed/docs=03/256/256" alt="Cover image" role="presentation" width="100%"><div style="position: absolute; bottom: 0; background: #ffffffAA"><p #text="">Front matter data, layout and other page options.</p><a #link.url="" href="/web-app/content/docs/page-options/"><span #link.title=""></span></a></div></div><div view="" z-load="@lib/templates/mdl-card-image" class="visible-on-ready" style="margin: 12px;min-width: 256px; min-height: 256px"><h1 #title="" style="font-size: 150%!important; position: absolute; padding: 12px" class="mdl-color-text--primary-contrast">Components short codes</h1><img #image="" src="https://picsum.photos/seed/docs!zx-tags/256/256" alt="Cover image" role="presentation" width="100%"><div style="position: absolute; bottom: 0; background: #ffffffAA"><p #text="">Rendering zKit and custom components using zx short code</p><a #link.url="" href="/web-app/content/docs/zkit-components-tags/"><span #link.title=""></span></a></div></div><div view="" z-load="@lib/templates/mdl-card-image" class="visible-on-ready" style="margin: 12px;min-width: 256px; min-height: 256px"><h1 #title="" style="font-size: 150%!important; position: absolute; padding: 12px" class="mdl-color-text--primary-contrast">Material Design components</h1><img #image="" src="https://picsum.photos/seed/docs=74/256/256" alt="Cover image" role="presentation" width="100%"><div style="position: absolute; bottom: 0; background: #ffffffAA"><p #text="">Rendering Material Design components using zx short code</p><a #link.url="" href="/web-app/content/docs/material-design-tags/"><span #link.title=""></span></a></div></div></div><div layout="rows center-spread" style="margin-top: 112px; gap:12px; margin-bottom: 32px; padding-left: 8px; padding-right: 8px; font-size: 140%"><div>&nbsp;</div><div>&nbsp;</div></div><style>.navigation-image {
             border-radius: 32px;
             border-color: rgba(100,200,200,0.5);
         }

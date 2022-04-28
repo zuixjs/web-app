@@ -1,0 +1,132 @@
+---
+layout: side_drawer.liquid
+options: mdl no-title
+title: Search
+description: Search this website
+---
+
+<div z-load="default" layout="column center-stretch">
+
+    <div layout="column center-center" style="padding: 24px; margin-top: 24px">
+        <div self="size-medium" class="field" layout="row center-left">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample1">
+                <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input #search-input aria-label="Search" type="search" class="mdl-textfield__input" id="sample1" required>
+                <label class="mdl-textfield__label" for="sample1">Enter search terms</label>
+            </div>
+        </div>
+        <div #results-none style="display: none">
+            <p>No results found.</p>
+        </div>
+    </div>
+
+    <div layout="column center-center">
+        <!-- zuix.js list-view component -->
+        <div self="size-medium" #results-list ctrl z-load="@lib/controllers/list-view"></div>
+    </div>
+
+    <script type="jscript">
+      // get the search index
+      let searchEngine;
+      let searchItems;
+      const options = {
+        includeScore: true,
+        //findAllMatches: true,
+        keys: ['title', 'description', 'content']
+      }
+
+      fetch('{{ app.baseUrl }}search-index.json').then((indexResponse) =>
+        indexResponse.json().then((searchIndex) => {
+          fetch('{{ app.baseUrl }}search-list.json').then((listResponse) =>
+            listResponse.json().then((searchList) => {
+              searchItems = searchList;
+              const index = Fuse.parseIndex(searchIndex);
+              searchEngine = new Fuse(searchList, options, index);
+            })
+          );
+        })
+      );
+
+      // update results list on 'keydown'
+      $searchInput.on('keyup search', (e, v) => {
+        if (!searchEngine) {
+          // TODO: should report issue
+          console.log('Search engine not initialized.');
+          return;
+        }
+        const terms = $searchInput.value();
+        const results = searchEngine.search(terms);
+        _resultsList.clear();
+        if (results.length > 0) {
+          $resultsNone.hide();
+          _resultsList.model({
+            itemList: results,
+            getItem: function(index, item) {
+              item = searchItems[item.refIndex];
+              return {
+                itemId: index,
+                componentId: 'inline/result-item-view',
+                options: {
+                  controller: zuix.controller(function(cp){}),
+                  className: 'item',
+                  model: item
+                }
+              };
+            }
+          });
+        } else if (terms.length > 0) {
+          $resultsNone.show();
+        } else {
+          $resultsNone.hide();
+        }
+      });
+    </script>
+
+</div>
+
+<!--Inline list item template -->
+<div z-view="inline/result-item-view">
+    <div layout="row center-justify">
+        <div self="size-x1">
+            <a #url><h4 #title>Untitled</h4></a>
+            <p #description self="size-x1">No description provided.</p>
+        </div>
+        <a #url><img #image /></a>
+    </div>
+</div>
+<style media="#inline/result-item-view">
+    :host {
+        margin-bottom: 24px;
+    }
+    h4 {
+        margin: 0;
+    }
+    div[layout] {
+        padding: 8px;
+        font-size: 100%;
+    }
+    p {
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    img {
+        border-radius: 4px;
+        margin: 8px;
+        height: 80px;
+        max-height: 80px;
+        width: auto;
+    }
+    @media only screen and (max-width: 600px) {
+        p {
+            font-size: 100%;
+        }
+        div[layout] {
+            font-size: 100%;
+        }
+    }
+</style>
+
+<!-- Fuse JS -->
+<script src="{{ '/js/fuse/fuse.min.js' | url }}" defer async></script>

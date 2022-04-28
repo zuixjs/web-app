@@ -37,6 +37,5 @@ const template = `
 const YAML = require('yaml');
 module.exports = (render, config) => {
   config = YAML.parse(config);
-  console.log(config)
   return render(template, {config});
 };

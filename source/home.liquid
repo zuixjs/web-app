@@ -1,6 +1,8 @@
 ---
 layout: side_drawer.liquid
 options: mdl highlight ext-links
+tags: sections
+group: home
 theme: indigo-deep_purple
 order: 0
 icon: home
@@ -19,11 +21,13 @@ keywords:
 
 {% assign sections = collections.sections | sort: 'data.order' %}
 {%- for section in sections -%}
+{%- if section.url != page.url -%}
 <div layout="column top-left">
-    <h2 style="margin-top: 48px!important;">{{ section.data.title }}</h2>
+    <a href="{{ section.url }}" title="{{ section.data.title }} section"><h2 style="margin-top: 48px!important;">{{ section.data.title }}</h2></a>
 
     {% assign itemsList = collections[section.data.group] | sort: 'data.pubDate' | reverse | sort: 'data.order' -%}
     {% include "layouts/side_drawer/items-list.liquid" %}
 
 </div>
+{%- endif -%}
 {% endfor %}
