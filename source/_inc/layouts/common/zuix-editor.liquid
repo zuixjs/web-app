@@ -42,7 +42,7 @@
             // section / group
             ed.mode({
               editPage: true,
-              deletePage: pageData.section !== 'home',
+              deletePage: pageData.group != null && pageData.group.length > 0,
               addPage: true,
               addComponent: true,
               rebuildAll: true,
@@ -53,7 +53,7 @@
             pageData.section = pageData.group;
             ed.mode({
               editPage: !hideEdit,
-              deletePage: true,
+              deletePage: pageData.group != null && pageData.group.length > 0,
               addPage: true,
               addComponent: true,
               rebuildAll: false,

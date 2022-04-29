@@ -7,5 +7,4 @@ order: 1
 icon: topic
 title: <$ title $>
 ---
-{% assign itemsList = collections[group] | sort: 'data.pubDate' | reverse | sort: 'data.order' -%}
 {% include 'layouts/side_drawer/items-list.liquid' %}
