@@ -3,6 +3,7 @@
   zuix.store('config', {
     "title": "Web App Template",
     "subtitle": "Simple, yet powerful!",
+    "language": "en",
     "baseUrl": "/web-app/",
     "resourcePath": "/web-app/app/",
     "libraryPath": {

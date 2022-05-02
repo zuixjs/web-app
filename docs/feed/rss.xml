@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+    <title>Web App Template</title>
+    <link>https://zuixjs.github.io/web-app/</link>
+    <atom:link href="https://zuixjs.github.io/web-app//feed/rss.xml" rel="self"></atom:link>
+    <description></description>
+    <language>en</language>
+    <copyright></copyright>
+    <lastBuildDate>Mon, 02 May 2022 16:11:46 +0200</lastBuildDate>
+    <pubDate>Mon, 02 May 2022 16:11:46 +0200</pubDate>
+    <image>
+        <title>Web App Template</title>
+        <url>https://zuixjs.github.io/web-app//images/icons/icon-152x152.png</url>
+        <link>https://zuixjs.github.io/web-app/</link>
+    </image>
+    <item>
+        <title>Search</title>
+        <link>https://zuixjs.github.io/web-app//search/</link>
+        <guid isPermaLink="true">https://zuixjs.github.io/web-app//search/</guid>
+        <description>Search this website</description>
+        <pubDate>Mon, 02 May 2022 16:11:46 +0200</pubDate>
+        <atom:link href="https://zuixjs.github.io/web-app//search/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Documentation</title>
+        <link>https://zuixjs.github.io/web-app//content/docs/</link>
+        <guid isPermaLink="true">https://zuixjs.github.io/web-app//content/docs/</guid>
+        <description>Documentation section</description>
+        <pubDate>Mon, 02 May 2022 16:11:46 +0200</pubDate>
+        <atom:link href="https://zuixjs.github.io/web-app//content/docs/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Welcome!</title>
+        <link>https://zuixjs.github.io/web-app//home/</link>
+        <guid isPermaLink="true">https://zuixjs.github.io/web-app//home/</guid>
+        <description>zuix.js web app home page</description>
+        <pubDate>Mon, 02 May 2022 16:11:46 +0200</pubDate>
+        <atom:link href="https://zuixjs.github.io/web-app//home/" rel="self" />
+        <dc:creator></dc:creator>
+    </item>
+    <item>
+        <title>Page options</title>
+        <link>https://zuixjs.github.io/web-app//content/docs/page-options/</link>
+        <guid isPermaLink="true">https://zuixjs.github.io/web-app//content/docs/page-options/</guid>
+        <description>Front matter data, layout and other page options.</description>
+        <pubDate>Mon, 07 Mar 2022 10:34:14 +0100</pubDate>
+        <atom:link href="https://zuixjs.github.io/web-app//content/docs/page-options/" rel="self" />
+        <dc:creator></dc:creator><!-- TODO: resolve cover image url either local or on a different site -->
+        <media:content medium="image" width="300" height="125"
+                       url="https://zuixjs.github.io/web-app//content/docs/page-options/https://picsum.photos/seed/docs=03/256/256" />
+        <media:credit></media:credit>
+        <media:description></media:description>
+    </item>
+    <item>
+        <title>Material Design components</title>
+        <link>https://zuixjs.github.io/web-app//content/docs/material-design-tags/</link>
+        <guid isPermaLink="true">https://zuixjs.github.io/web-app//content/docs/material-design-tags/</guid>
+        <description>Rendering Material Design components using &lt;code&gt;zx&lt;/code&gt; short code</description>
+        <pubDate>Mon, 02 May 2022 16:11:46 +0200</pubDate>
+        <atom:link href="https://zuixjs.github.io/web-app//content/docs/material-design-tags/" rel="self" />
+        <dc:creator></dc:creator><!-- TODO: resolve cover image url either local or on a different site -->
+        <media:content medium="image" width="300" height="125"
+                       url="https://zuixjs.github.io/web-app//content/docs/material-design-tags/https://picsum.photos/seed/docs=74/256/256" />
+        <media:credit></media:credit>
+        <media:description></media:description>
+    </item>
+    <item>
+        <title>Components short codes</title>
+        <link>https://zuixjs.github.io/web-app//content/docs/zkit-components-tags/</link>
+        <guid isPermaLink="true">https://zuixjs.github.io/web-app//content/docs/zkit-components-tags/</guid>
+        <description>Rendering zKit and custom components using &lt;code&gt;zx&lt;/code&gt; short code</description>
+        <pubDate>Tue, 05 Apr 2022 06:01:41 +0200</pubDate>
+        <atom:link href="https://zuixjs.github.io/web-app//content/docs/zkit-components-tags/" rel="self" />
+        <dc:creator></dc:creator><!-- TODO: resolve cover image url either local or on a different site -->
+        <media:content medium="image" width="300" height="125"
+                       url="https://zuixjs.github.io/web-app//content/docs/zkit-components-tags/https://picsum.photos/seed/docs!zx-tags/256/256" />
+        <media:credit></media:credit>
+        <media:description></media:description>
+    </item>
+</channel>
+</rss>

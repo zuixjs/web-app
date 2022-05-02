@@ -4,7 +4,7 @@ theme: indigo-deep_purple
 options: mdl highlight ext-links
 tags: docs
 group: docs
-order: 40
+order: 20
 coverPreview: https://picsum.photos/seed/docs!zx-tags/256/256
 title: Components short codes
 description: Rendering zKit and custom components using <code>zx</code> short code 

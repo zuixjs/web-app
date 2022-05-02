@@ -4,7 +4,7 @@ options: mdl highlight ext-links
 theme: indigo-deep_purple
 tags: docs
 group: docs
-order: 1
+order: 10
 coverPreview: https://picsum.photos/seed/docs=03/256/256
 title: Page options
 description: Front matter data, layout and other page options.

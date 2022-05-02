@@ -136,7 +136,7 @@
         margin-bottom: 16px;
     }
 
-    [z-field="header"] {
+    [\#header] {
         position: fixed;
         z-index: 1;
         top:0; left: 0; right: 0; bottom: 0;
@@ -146,7 +146,7 @@
         background: #f1f1f1;
         box-shadow: 0 1px rgba(100, 100, 100, 30%);
     }
-    h1[z-field="alt_header"] {
+    h1[\#alt_header] {
         max-width: 100%;
         text-align: center;
         display: block;
@@ -193,11 +193,11 @@
             padding-left: 304px !important;
             padding-right: 24px !important;
         }
-        [z-field="header"] {
+        [\#header] {
             padding-left: 316px;
             display: none;
         }
-        h1[z-field="alt_header"] {
+        h1[\#alt_header] {
             margin-top: 32px;
             margin-bottom: 48px;
             margin-left: -28px;

@@ -1,5 +1,5 @@
 <div layout="rows top-spread">
-    {% assign itemsList = collections[group] | sort: 'data.pubDate' | sort: 'data.order' | reverse -%}
+    {% assign itemsList = collections[group] | sort: 'data.pubDate' | reverse | sort: 'data.order' -%}
     {%- for post in itemsList -%}
     {% if post.data.group == group and post.url != page.url %}
 

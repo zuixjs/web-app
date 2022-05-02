@@ -72,6 +72,7 @@
     "app": {
       "title": "Web App Template",
       "subtitle": "Simple, yet powerful!",
+      "language": "en",
       "baseUrl": "/",
       "resourcePath": "{{ app.baseUrl }}app/",
       "libraryPath": {

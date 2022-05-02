@@ -8,11 +8,9 @@ group: <$ section $>
 order: 1
 coverPreview: https://picsum.photos/seed/<$ section $>!<$ name $>/256/256
 title: <$ title $>
-description: Page description
+description:
 icon: read_more
 pubDate: <$ date $>
 keywords:
 - <$ title $>
 ---
-
-It works! =)
