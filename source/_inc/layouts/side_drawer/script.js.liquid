@@ -13,6 +13,8 @@ window.drawer_opts = {
   ready: function() {
     menuDrawer = this;
     menuDrawer.$.playAnimation(['animate__fadeIn', enterAnimation]);
+    // TODO: work-around to very initial rendering not showing cards
+    zuix.componentize();
   }
 };
 
