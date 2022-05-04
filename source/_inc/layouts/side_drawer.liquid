@@ -24,7 +24,7 @@ date: Last Modified
     </nav>
 
 
-    <main class="animate__animated animate__fadeIn animate__faster" layout="column top-center">
+    <main layout="column top-center">
 
         {% unless options contains 'no-title' %}
             <h1 #alt_header class="title">{{ title }}</h1>
@@ -44,7 +44,7 @@ date: Last Modified
     <div #drawer ctrl z-load="@lib/controllers/drawer-layout"
          z-context="menu-drawer" z-lazy="false"
          z-options="drawer_opts"
-         class="drawer-layout no-select visible-on-ready animate__animated animate__faster"
+         class="drawer-layout no-select visible-on-ready"
          layout="column top-stretch">
         <!-- Navigation Drawer content -->
 
