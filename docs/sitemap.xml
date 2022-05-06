@@ -10,10 +10,6 @@
     <lastmod>2022-04-29</lastmod>
   </url>
   <url>
-    <loc>https://zuixjs.github.io/web-app//home/</loc>
-    <lastmod>2022-05-02</lastmod>
-  </url>
-  <url>
     <loc>https://zuixjs.github.io/web-app//content/docs/page-options/</loc>
     <lastmod>2022-05-02</lastmod>
   </url>
@@ -24,5 +20,9 @@
   <url>
     <loc>https://zuixjs.github.io/web-app//content/docs/zkit-components-tags/</loc>
     <lastmod>2022-05-02</lastmod>
+  </url>
+  <url>
+    <loc>https://zuixjs.github.io/web-app//home/</loc>
+    <lastmod>2022-05-06</lastmod>
   </url>
 </urlset>

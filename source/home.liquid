@@ -21,7 +21,7 @@ keywords:
 {%- for section in sections -%}
 {%- if section.url != page.url -%}
 <div layout="column top-left">
-    <a href="{{ section.url }}" title="{{ section.data.title }} section"><h2 style="margin-top: 48px!important;">{{ section.data.title }}</h2></a>
+    <a href="{{ section.url | url }}" title="{{ section.data.title }} section"><h2 style="margin-top: 48px!important;">{{ section.data.title }}</h2></a>
 
     {% assign group = section.data.group %}
     {% include "layouts/side_drawer/items-list.liquid" %}
@@ -29,3 +29,9 @@ keywords:
 </div>
 {%- endif -%}
 {% endfor %}
+
+<div layout="row center-center" style="padding-top: 128px">
+    <a href="https://www.patreon.com/bePatron?u=73679823" data-patreon-widget-type="become-patron-button" title="Become a Patron">
+        <img src="{{ '/images/patreon.png' | url }}" width="256" alt="Support my work, become a Patron!">
+    </a>
+</div>
