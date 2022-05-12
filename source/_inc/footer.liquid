@@ -1,3 +1,9 @@
+{% if options contains 'sponsor' %}
+    <div class="sponsorship">
+        {% include "fragments/zuix-funding.liquid" %}
+    </div>
+{% endif %}
+
 {% unless options contains 'no-footer' %}
 <footer self="size-large" layout="columns bottom-center" style="min-height: 200px">
 
