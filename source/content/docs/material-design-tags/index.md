@@ -281,6 +281,8 @@ settings:
 - name: lazy
   value: false
 options:
+- name: context-id
+  value: menu-overlay
 - name: position
   value: center
 

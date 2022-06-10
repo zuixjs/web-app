@@ -41,6 +41,37 @@ function YouTubeVideoItem(cp) {
 
   function setHost(view) {
     mediaBrowser = zuix.context(view);
+    const controls = cp.field('player-controls');
+    mediaBrowser.on({
+      'open': function() {
+        if (isActive()) {
+          play();
+        }
+      },
+      'close': pause,
+      'controls:show': function() {
+        controls.playTransition({classes: 'fadeOutUp fadeIn', holdState: true});
+      },
+      'controls:hide': function() {
+        controls.playTransition({classes: 'fadeIn fadeOutUp', holdState: true});
+      },
+      'page:change': pageChanged,
+      'refresh:inactive': function() {
+        const ps = player.getPlayerState();
+        if (isActive() && (ps === 1 || ps === 3)) {
+          pause();
+        }
+      },
+      'refresh:active': function() {
+        const ps = player.getPlayerState();
+        if (isActive() && ps !== 1 && ps !== 3) {
+          play();
+        }
+      }
+    });
+    if (mediaBrowser.current() === pageIndex) {
+      play();
+    }
   }
 
   function isActive() {
@@ -74,37 +105,7 @@ function YouTubeVideoItem(cp) {
   }
 
   function onPlayerReady(event) {
-    const controls = cp.field('player-controls');
-    mediaBrowser.on({
-      'open': function() {
-        if (isActive()) {
-          play();
-        }
-      },
-      'close': pause,
-      'controls:show': function() {
-        controls.playTransition({classes: 'fadeOutUp fadeIn', holdState: true});
-      },
-      'controls:hide': function() {
-        controls.playTransition({classes: 'fadeIn fadeOutUp', holdState: true});
-      },
-      'page:change': pageChanged,
-      'refresh:inactive': function() {
-        const ps = player.getPlayerState();
-        if (isActive() && (ps === 1 || ps === 3)) {
-          pause();
-        }
-      },
-      'refresh:active': function() {
-        const ps = player.getPlayerState();
-        if (isActive() && ps !== 1 && ps !== 3) {
-          play();
-        }
-      }
-    });
-    if (mediaBrowser.current() === pageIndex) {
-      play();
-    }
+    // not used
   }
   function onPlayerStateChange(event) {
     /** Yourube API

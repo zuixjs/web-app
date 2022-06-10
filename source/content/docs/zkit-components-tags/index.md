@@ -106,6 +106,8 @@ items:
   icon: video_library
 
 options:
+- name: context-id
+  value: menu-overlay
 - name: position
   value: center
 - name: button-color

@@ -71,20 +71,18 @@ function ViewPager() {
     const view = cp.view();
     options.html = false;
     options.css = false;
-    enablePaging = (options.enablePaging === true || (view.attr('data-o-paging') === 'true'));
-    enableAutoSlide = (options.autoSlide === true || (view.attr('data-o-slide') === 'true'));
-    passiveMode = (options.passive !== false && (view.attr('data-o-passive') !== 'false'));
-    holdTouch = (options.holdTouch === true || (view.attr('data-o-hold') === 'true'));
-    startGap = (options.startGap || view.attr('data-o-startgap'));
-    if (options.verticalLayout === true || (view.attr('data-o-layout') === LAYOUT_VERTICAL)) {
+    enablePaging = (options.paging === true || enablePaging);
+    enableAutoSlide = (options.autoSlide === true || enableAutoSlide);
+    passiveMode = (options.passive !== false && passiveMode);
+    holdTouch = (options.holdTouch === true || holdTouch);
+    startGap = (options.startGap || startGap);
+    if (options.verticalLayout === true) {
       layoutType = LAYOUT_VERTICAL;
     }
     if (options.slideInterval != null) {
-      slideIntervalMs = options.slideInterval;
-    } else if (view.attr('data-o-slide-interval') != null) {
-      slideIntervalMs = parseInt(view.attr('data-o-slide-interval'));
+      slideIntervalMs = (options.slideInterval || slideIntervalMs);
     }
-    hideOffViewElements = (options.autohide === true || (view.attr('data-o-autohide') === 'true'));
+    hideOffViewElements = (options.autoHide === true || hideOffViewElements);
   };
 
   cp.create = function() {
@@ -242,8 +240,8 @@ function ViewPager() {
         position(this, centerX, offset);
         offset += size.height;
       }
-      if (this.attr('data-ui-lazyload,z-lazy') === 'true' ||
-        this.find('[data-ui-lazyload="true"],[z-lazy="true"]').length() > 0) {
+      if (this.attr('z-lazy') === 'true' ||
+        this.find('[z-lazy="true"]').length() > 0) {
         isLazy = true;
       }
     });

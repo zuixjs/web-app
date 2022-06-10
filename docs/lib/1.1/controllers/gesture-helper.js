@@ -35,12 +35,11 @@ function GestureHelper() {
 
   const cp = this;
   cp.init = function() {
-    const view = cp.view();
     const options = cp.options();
     options.html = false;
     options.css = false;
-    passiveMode = (options.passive !== false && (view.attr('data-o-passive') !== 'false'));
-    startGap = (options.startGap || view.attr('data-o-startgap'));
+    passiveMode = options.passive !== false && passiveMode;
+    startGap = options.startGap || startGap;
   };
 
   cp.create = function() {
@@ -56,7 +55,8 @@ function GestureHelper() {
     }).on('mousedown', {
       handler: function(e) {
         const targetElement = zuix.$(e.target);
-        if (e.which === 1 && targetElement.parent('[class*="no-gesture"]').length() === 0 && e.x > startGap) {
+        ignoreSession = document.elementsFromPoint(e.x, e.y).indexOf(cp.view().get()) === -1;
+        if (!ignoreSession && e.which === 1 && targetElement.parent('[class*="no-gesture"]').length() === 0 && e.x > startGap) {
           mouseButtonDown = true;
           ignoreSession = false;
           // targetElement.css('touch-action', 'none');
@@ -81,7 +81,8 @@ function GestureHelper() {
     }).on('touchstart', {
       handler: function(e) {
         const targetElement = zuix.$(e.target);
-        if (targetElement.parent('[class*="no-gesture"]').length() === 0 && e.touches[0].clientX > startGap) {
+        ignoreSession = document.elementsFromPoint(e.touches[0].clientX, e.touches[0].clientY).indexOf(cp.view().get()) === -1;
+        if (!ignoreSession && targetElement.parent('[class*="no-gesture"]').length() === 0 && e.touches[0].clientX > startGap) {
           ignoreSession = false;
           // targetElement.css('touch-action', 'none');
           targetElement.get().draggable = false;

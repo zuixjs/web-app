@@ -78,37 +78,37 @@
     background-color: rgba(0,0,0,0.75);
 }
 
-[z-field*="nav-"] {
+[z-field*="nav"] {
     z-index: 10;
     background-color: rgba(1,1,1,0.75);
     border-radius: 12px;
 }
 
-[z-field="nav-prev"] {
+[z-field="navPrev"] {
     position: absolute;
     left: 12px;
     bottom: calc(50% - 24px);
     border: solid 1px white;
     border-radius: 48px;
 }
-[z-field="nav-next"] {
+[z-field="navNext"] {
     position: absolute;
     right: 12px;
     bottom: calc(50% - 24px);
     border: solid 1px white;
     border-radius: 48px;
 }
-[z-field="nav-close"] {
+[z-field="navClose"] {
     position: absolute;
     right: 12px;
     top: 12px;
 }
-[z-field="nav-fullscreen"] {
+[z-field="navFullscreen"] {
     position: absolute;
     right: 12px;
     top: 12px;
 }
-[z-field="nav-fullscreen-exit"] {
+[z-field="navFullscreen-exit"] {
     position: absolute;
     right: 12px;
     top: 12px;
@@ -142,21 +142,21 @@ svg {
     [z-field="preview"] img {
         max-height: 80px;
     }
-    [z-field="nav-prev"] {
+    [z-field="navPrev"] {
         left: 6px;
     }
-    [z-field="nav-next"] {
+    [z-field="navNext"] {
         right: 6px;
     }
-    [z-field="nav-close"] {
-        right: 6px;
-        top: 6px;
-    }
-    [z-field="nav-fullscreen"] {
+    [z-field="navClose"] {
         right: 6px;
         top: 6px;
     }
-    [z-field="nav-fullscreen-exit"] {
+    [z-field="navFullscreen"] {
+        right: 6px;
+        top: 6px;
+    }
+    [z-field="navFullscreenExit"] {
         right: 6px;
         top: 6px;
     }

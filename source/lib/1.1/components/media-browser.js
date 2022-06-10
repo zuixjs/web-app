@@ -132,7 +132,7 @@ function MediaBrowser(cp) {
         });
       });
       // set auto-slide option
-      const autoSlide = cp.view().attr('data-o-slide') || cp.options().slide;
+      const autoSlide = cp.options().slide;
       fullView.slide(autoSlide != null ? +autoSlide : false);
       // final initialization steps
       initializeAnimations();
@@ -180,11 +180,11 @@ function MediaBrowser(cp) {
 
     // if not inlineMode mode === true, the media-browser will be hidden
     // and show only fullscreen after the `open()` method is called
-    inlineMode = cp.view().attr('data-o-inline') === 'true' || cp.options().inline;
+    inlineMode = cp.options().inline;
     if (!inlineMode) {
       cp.view().hide();
       showingFullscreen = false;
-      const buttonName = cp.view().attr('data-o-button') || cp.options().button;
+      const buttonName = cp.options().button;
       const button = zuix.field(buttonName);
       button.on('click', openBrowser);
     } else {
