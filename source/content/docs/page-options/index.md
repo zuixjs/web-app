@@ -86,12 +86,12 @@ Template engine folders:
 ./source/_data     # data folder
 ./source/_filters  # filters
 ./source/_inc      # includes and layouts
+./templates/tags/  # user-defined components liquid tags
 ```
 
 *zuix.js* components folders:
 ```
 ./source/app  # user-defined components
-./source/lib  # copy of zKit components
 ```
 
 Global asset files and folders:
