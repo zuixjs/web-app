@@ -6,8 +6,8 @@ tags: docs
 group: docs
 order: 20
 coverPreview: https://picsum.photos/seed/docs!zx-tags/256/256
-title: Components short codes
-description: Rendering zKit and custom components using <code>zx</code> short code 
+title: Custom `zx` shortcode tags
+description: Rendering components using <code>zx</code> shortcode 
 icon: read_more
 pubDate: 2022-04-05 04:01:41
 keywords:
@@ -20,7 +20,15 @@ keywords:
 - gallery
 ---
 
-Using `zx`'s short code's tags it is possible to render components and fragments without writing any HTML or JavaScript code.
+Using `zx` shortcode it is possible to render components and fragments without writing any HTML or JavaScript code.
+
+**Syntax:**
+
+```
+{% zx '<component-tag>' %}
+...
+{% endzx %}
+```
 
 
 ## Components tags
