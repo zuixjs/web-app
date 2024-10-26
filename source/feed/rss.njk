@@ -26,7 +26,7 @@ dateFormat: 'ddd, DD MMM YYYY HH:mm:ss ZZ'
         <link>{{ postUrl }}</link>
         <guid isPermaLink="true">{{ postUrl }}</guid>
         <description>{{ post.data.description }}</description>
-        <pubDate>{{ post.data.pubDate | date(dateFormat) }}</pubDate>
+        <pubDate>{{ post.date | date(dateFormat) }}</pubDate>
         <atom:link href="{{ postUrl }}" rel="self" />
         <dc:creator>{{ post.data.author }}</dc:creator>
         {%- if post.data.coverPreview -%}
