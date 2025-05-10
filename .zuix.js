@@ -161,7 +161,7 @@ module.exports = (program) => {
     .requiredOption('-s, --section <section_name>', 'Page section')
     .requiredOption('-n, --name <page_name>', 'Page name')
     .option('-l, --layout <layout_template>', 'Layout template name', 'article')
-    .option('-fm, --front-matter "<field>: <value>"', 'Set a front matter field value', collect, [])
+    .option('-M, --front-matter "<field>: <value>"', 'Set a front matter field value', collect, [])
     .action(addPage);
   program
     .command('wipe-content')

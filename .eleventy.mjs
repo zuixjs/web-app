@@ -16,33 +16,37 @@
  * @version 1.0
  *
  */
+// .eleventy.mjs
 
-const path = require('path');
-const compress = require('compression');
+// Moduli di Eleventy e Node.js
+import path from 'path';
+import compress from 'compression';
+import { EleventyRenderPlugin } from "@11ty/eleventy"; // Se lo usi
 
-// 11ty
-const {EleventyRenderPlugin} = require("@11ty/eleventy");
+// Moduli del tuo progetto / zuix
+import zuix11ty from './.eleventy-zuix.js'; // Importa da .js (trattato come CJS)
 
-// zuix.js
-const zuix11ty = require('./.eleventy-zuix');
+// Moduli per LESS
+import less from 'less';
+import lessConfig from './.lessrc.json' assert { type: 'json' }; // Importa da .json
+
+// Moduli per ESLint
+import { Linter as ESLintLinter } from 'eslint'; // Importa la classe Linter
+import lintConfig from './.eslintrc.json' assert { type: 'json' }; // Importa la configurazione da .json
+
+// Istanzia il linter
+const linter = new ESLintLinter();
+
+// Ottieni la configurazione di zuix
 const zuixConfig = zuix11ty.getZuixConfig();
-
-// LESS CSS compiler
-const less = require('less');
-const lessConfig = require(process.cwd() + '/.lessrc');
-
-// Linter (ESLint)
-const Linter = require('eslint').Linter;
-const linter = new Linter();
-const lintConfig = require(process.cwd() + '/.eslintrc');
 
 // Minifier
 //const { minify } = require("terser");
 
 // Keep track of changed files for zUIx.js post-processing
-let browserSync;
+//let browserSync;
 
-module.exports = function(eleventyConfig) {
+export default function(eleventyConfig) {
   eleventyConfig.setWatchJavaScriptDependencies(false);
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
@@ -73,20 +77,48 @@ module.exports = function(eleventyConfig) {
     strictFilters: false,
   });
 
+  // Safe JSON pipe
+  eleventyConfig.addFilter('jsonScriptSafe', function(value) {
+    let jsonString;
+    try {
+      jsonString = JSON.stringify(value);
+    } catch (e) {
+      console.error('Error stringifying value in jsonScriptSafe filter:', e);
+      jsonString = 'null'; // Fallback sicuro
+    }
+
+    jsonString = jsonString.replace(/<\/(script)/gi, '<\\/$1');
+    // Additional safe filters that could be applied:
+    // jsonString = jsonString.replace(/<!--/g, '<\\!--');
+    // jsonString = jsonString.replace(/]]>/g, ']]\\>');
+    return jsonString;
+  });
+
   // Add custom file types and handlers
   eleventyConfig.addTemplateFormats([ 'less', 'css', 'js' ]);
+
   eleventyConfig.addExtension('less', {
     read: true,
     outputFileExtension: 'css',
-    compile: (content, path) => () => {
-      let output;
-      less.render(content, lessConfig, function(error, lessOutput) {
-        // TODO: handle and report 'error'
-        output = lessOutput;
-      });
-      return output.css;
+    compileOptions: {
+      permalink: () => false // O la tua logica preferita per i permalink
+    },
+    compile: async function(inputContent, inputPath) { // Resa async
+      try {
+        // `less` e `lessConfig` sono usati qui
+        const output = await less.render(inputContent, {
+          ...lessConfig,
+          filename: inputPath,
+          paths: [path.dirname(inputPath), ...(lessConfig.paths || [])]
+        });
+        return output.css;
+      } catch (error) {
+        console.error(chalk.red(`LESS Compilation Error in ${inputPath}:\n`), error);
+        return `/* LESS Compilation Error in ${inputPath}: \n${error.message}\nLine: ${error.line}, Column: ${error.column} */`;
+      }
     }
   });
+
   // Add linter to report code errors
   eleventyConfig.addLinter('eslint', function(content, inputPath, outputPath) {
     if( inputPath.endsWith('.js') ) {
@@ -116,10 +148,11 @@ module.exports = function(eleventyConfig) {
       next();
     }],
     callbacks: {
-      ready: function(err, bs) {
+      ready: function(err, browserSync) {
         // store a local reference of BrowserSync object
-        browserSync = bs;
+        //browserSync = bs;
         // setup zuix-11ty watcher
+        //console.log(browserSync);
         zuix11ty.startWatcher(eleventyConfig, browserSync.publicInstance);
       }
     },
