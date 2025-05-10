@@ -122,7 +122,7 @@ function handleExitSignal(signal) {
   setTimeout(() => {
     console.error('Cleanup timeout. Forcing exit.');
     process.exit(1);
-  }, 7000);
+  }, 5000);
 }
 
 if (process.env.ZUIX_EXIT_HANDLERS_SET !== 'true') {
@@ -130,7 +130,6 @@ if (process.env.ZUIX_EXIT_HANDLERS_SET !== 'true') {
   process.on('SIGTERM', () => handleExitSignal('SIGTERM'));
   process.on('SIGQUIT', () => handleExitSignal('SIGQUIT'));
   process.env.ZUIX_EXIT_HANDLERS_SET = 'true';
-  console.log('Exit signal handlers (SIGINT, SIGTERM, SIGQUIT) attached.');
 }
 
 const normalizeMarkup = (s) => s.trim().split('\n').filter((l) => {
@@ -404,7 +403,7 @@ function initEleventyZuix(eleventyConfig) {
     changedFiles.push(...cf);
   });
   eleventyConfig.on('eleventy.after', async function({ dir, results, runMode, outputMode }) {
-    if (global.postProcessFiles || postProcessFiles.length > 0) {
+    if (postProcessFiles.length > 0) {
       const compilePromises = postProcessFiles.map((pf) => {
         return compilePage(pf.file, pf.file, {
           baseFolder: pf.baseFolder,
@@ -427,7 +426,6 @@ function initEleventyZuix(eleventyConfig) {
         // if (runMode === 'build' && outputMode === 'fs') process.exitCode = 1;
       }
     }
-    if (global.postProcessFiles) postProcessFiles.length = 0;
     if (zuixConfig.build.serviceWorker) {
       console.log('Updating service worker...');
       try {
@@ -591,7 +589,7 @@ function configure(eleventyConfig) {
   );
 
   /*
-  || Add short codes
+  || Add shortcodes
   */
 
   eleventyConfig.addShortcode('rawFile', function(fileName) {

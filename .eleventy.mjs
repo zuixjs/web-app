@@ -1,5 +1,5 @@
 /*
- * Copyright 2020-2022 G-Labs. All Rights Reserved.
+ * Copyright 2020-2025 G-Labs. All Rights Reserved.
  *         https://zuixjs.github.io/zuix
  *
  * Licensed under the MIT license. See LICENSE file.
@@ -13,38 +13,28 @@
  *        https://zuixjs.github.io/zuix
  *
  * @author Generoso Martello - https://github.com/genemars
- * @version 1.0
+ * @version 1.1
  *
  */
-// .eleventy.mjs
 
-// Moduli di Eleventy e Node.js
 import path from 'path';
 import compress from 'compression';
-import { EleventyRenderPlugin } from "@11ty/eleventy"; // Se lo usi
 
-// Moduli del tuo progetto / zuix
-import zuix11ty from './.eleventy-zuix.js'; // Importa da .js (trattato come CJS)
+// 11ty
+import { EleventyRenderPlugin } from "@11ty/eleventy";
 
-// Moduli per LESS
-import less from 'less';
-import lessConfig from './.lessrc.json' assert { type: 'json' }; // Importa da .json
-
-// Moduli per ESLint
-import { Linter as ESLintLinter } from 'eslint'; // Importa la classe Linter
-import lintConfig from './.eslintrc.json' assert { type: 'json' }; // Importa la configurazione da .json
-
-// Istanzia il linter
-const linter = new ESLintLinter();
-
-// Ottieni la configurazione di zuix
+// zuix.js
+import zuix11ty from './.eleventy-zuix.js';
 const zuixConfig = zuix11ty.getZuixConfig();
 
-// Minifier
-//const { minify } = require("terser");
+// LESS CSS compiler
+import less from 'less';
+import lessConfig from './.lessrc.json' assert { type: 'json' };
 
-// Keep track of changed files for zUIx.js post-processing
-//let browserSync;
+// Linter (ESLint)
+import { Linter as ESLintLinter } from 'eslint';
+const linter = new ESLintLinter();
+import lintConfig from './.eslintrc.json' assert { type: 'json' };
 
 export default function(eleventyConfig) {
   eleventyConfig.setWatchJavaScriptDependencies(false);
@@ -84,9 +74,7 @@ export default function(eleventyConfig) {
       jsonString = JSON.stringify(value);
     } catch (e) {
       console.error('Error stringifying value in jsonScriptSafe filter:', e);
-      jsonString = 'null'; // Fallback sicuro
     }
-
     jsonString = jsonString.replace(/<\/(script)/gi, '<\\/$1');
     // Additional safe filters that could be applied:
     // jsonString = jsonString.replace(/<!--/g, '<\\!--');
@@ -96,16 +84,14 @@ export default function(eleventyConfig) {
 
   // Add custom file types and handlers
   eleventyConfig.addTemplateFormats([ 'less', 'css', 'js' ]);
-
   eleventyConfig.addExtension('less', {
     read: true,
     outputFileExtension: 'css',
     compileOptions: {
-      permalink: () => false // O la tua logica preferita per i permalink
+      permalink: () => false
     },
-    compile: async function(inputContent, inputPath) { // Resa async
+    compile: async function(inputContent, inputPath) {
       try {
-        // `less` e `lessConfig` sono usati qui
         const output = await less.render(inputContent, {
           ...lessConfig,
           filename: inputPath,
@@ -113,12 +99,11 @@ export default function(eleventyConfig) {
         });
         return output.css;
       } catch (error) {
-        console.error(chalk.red(`LESS Compilation Error in ${inputPath}:\n`), error);
-        return `/* LESS Compilation Error in ${inputPath}: \n${error.message}\nLine: ${error.line}, Column: ${error.column} */`;
+        console.error(chalk.red(`LESS compilation error in ${inputPath}:\n`), error);
+        return `/* LESS compilation error in ${inputPath}: \n${error.message}\nLine: ${error.line}, Column: ${error.column} */`;
       }
     }
   });
-
   // Add linter to report code errors
   eleventyConfig.addLinter('eslint', function(content, inputPath, outputPath) {
     if( inputPath.endsWith('.js') ) {
@@ -149,10 +134,7 @@ export default function(eleventyConfig) {
     }],
     callbacks: {
       ready: function(err, browserSync) {
-        // store a local reference of BrowserSync object
-        //browserSync = bs;
         // setup zuix-11ty watcher
-        //console.log(browserSync);
         zuix11ty.startWatcher(eleventyConfig, browserSync.publicInstance);
       }
     },
