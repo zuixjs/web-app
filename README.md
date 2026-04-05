@@ -13,7 +13,8 @@ and adaptive design that works very well on desktop screens too.
 - Works offline
 - Integrated content editor
 
-Starter project based on [zuix-web-starter](https://zuixjs.github.io/zuix-web-starter).
+Starter project based on [zuix-web-starter](https://zuixjs.github.io/zuix-web-starter).  
+Requires **Node.js 20**.
 
 ### --&gt;&gt;[ [Demo and Docs](https://zuixjs.github.io/web-app) ]&lt;&lt;--
 
